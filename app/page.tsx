@@ -1,103 +1,395 @@
+"use client";
+
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, Check } from "lucide-react";
+import { useState } from "react";
 import Image from "next/image";
 
-export default function Home() {
-  return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+export default function ComingSoon() {
+  const [email, setEmail] = useState("");
+  const [subscribed, setSubscribed] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (email && emailRegex.test(email)) {
+      // TODO: Send email to backend/newsletter service
+      setSubscribed(true);
+      setEmail("");
+      setTimeout(() => setSubscribed(false), 5000);
+    }
+  };
+
+  const services = [
+    "Web & Mobile Design",
+    "Product Development",
+    "Brand Strategy",
+    "Digital Marketing"
+  ];
+
+  return (
+    <div className="h-screen bg-white text-black relative overflow-hidden font-inter flex flex-col">
+      {/* SEO-optimized semantic HTML */}
+      <h1 className="sr-only">Cortex Creative - IT Consulting & Digital Solutions | Web Design, Mobile Design, Product Development, Brand Strategy</h1>
+      {/* Minimal accent line */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-black/10 to-transparent" />
+
+      {/* Minimal geometric animations */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+
+        {/* Rotating circles - outline only */}
+        <motion.div
+          className="absolute top-[15%] left-[10%] w-[300px] h-[300px] rounded-full border border-black/8"
+          animate={{
+            rotate: 360,
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            rotate: { duration: 60, repeat: Infinity, ease: "linear" },
+            scale: { duration: 8, repeat: Infinity, ease: "easeInOut" }
+          }}
+        />
+
+        <motion.div
+          className="absolute top-[50%] right-[8%] w-[250px] h-[250px] rounded-full border border-black/10"
+          animate={{
+            rotate: -360,
+            scale: [1, 1.15, 1],
+          }}
+          transition={{
+            rotate: { duration: 45, repeat: Infinity, ease: "linear" },
+            scale: { duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }
+          }}
+        />
+
+        <motion.div
+          className="absolute bottom-[20%] left-[25%] w-[200px] h-[200px] rounded-full border border-black/9"
+          animate={{
+            rotate: 360,
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            rotate: { duration: 50, repeat: Infinity, ease: "linear" },
+            scale: { duration: 9, repeat: Infinity, ease: "easeInOut", delay: 2 }
+          }}
+        />
+
+        {/* Floating squares */}
+        <motion.div
+          className="absolute top-[35%] right-[30%] w-20 h-20 border border-black/12"
+          animate={{
+            y: [0, -30, 0],
+            rotate: [0, 180, 360],
+            opacity: [0.4, 0.8, 0.4],
+          }}
+          transition={{
+            duration: 15,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+
+        <motion.div
+          className="absolute bottom-[35%] right-[20%] w-16 h-16 border border-black/10 rounded-lg"
+          animate={{
+            y: [0, 40, 0],
+            rotate: [0, -180, -360],
+            opacity: [0.5, 0.9, 0.5],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1
+          }}
+        />
+
+        {/* Thin lines with movement */}
+        <motion.div
+          className="absolute top-[25%] left-[15%] w-40 h-px bg-black/15"
+          animate={{
+            scaleX: [1, 1.5, 1],
+            opacity: [0.4, 0.8, 0.4],
+          }}
+          transition={{
+            duration: 7,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+
+        <motion.div
+          className="absolute bottom-[30%] right-[25%] w-32 h-px bg-black/12"
+          animate={{
+            scaleX: [1, 1.6, 1],
+            opacity: [0.5, 0.9, 0.5],
+          }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
+
+        {/* Small accent dots */}
+        <motion.div
+          className="absolute top-[20%] left-[40%] w-3 h-3 rounded-full bg-black/20"
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.3, 0.7, 0.3],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+
+        <motion.div
+          className="absolute bottom-[25%] left-[15%] w-2.5 h-2.5 rounded-full bg-black/18"
+          animate={{
+            scale: [1, 1.6, 1],
+            opacity: [0.4, 0.8, 0.4],
+          }}
+          transition={{
+            duration: 6,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1.5
+          }}
+        />
+
+        <motion.div
+          className="absolute top-[60%] right-[35%] w-3 h-3 rounded-full bg-black/16"
+          animate={{
+            scale: [1, 1.4, 1],
+            opacity: [0.35, 0.75, 0.35],
+          }}
+          transition={{
+            duration: 5.5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 0.5
+          }}
+        />
+      </div>
+
+      {/* Header */}
+      <motion.header
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className="p-4 md:p-6 lg:p-8 flex-shrink-0 relative z-10"
+      >
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <motion.div
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="h-4 md:h-5 relative w-32 md:w-40"
           >
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/Cortex Creative-logo/vector/default-monochrome-black.svg"
+              alt="Cortex Creative - IT Consulting & Digital Solutions"
+              fill
+              priority
+              className="object-contain object-left"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+          </motion.div>
+          <motion.a
+            href="mailto:hello@cortexcreative.ca"
+            className="text-xs md:text-sm font-medium hover:opacity-60 transition-opacity"
+            initial={{ x: 20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Read our docs
-          </a>
+            hello@cortexcreative.ca
+          </motion.a>
+        </div>
+      </motion.header>
+
+      {/* Main Content */}
+      <main className="flex-1 flex items-center px-4 md:px-6 lg:px-8 min-h-0 relative z-10">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+
+            {/* Left Column */}
+            <div className="space-y-6 md:space-y-8">
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="inline-flex items-center gap-2"
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-black" />
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-black/60">Launching Soon</span>
+              </motion.div>
+
+              {/* Hero Title */}
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] tracking-[-0.02em] font-space-grotesk"
+              >
+                Design that
+                <br />
+                drives results
+              </motion.h2>
+
+              {/* Description */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="text-base md:text-lg text-black/60 leading-relaxed max-w-xl font-light"
+              >
+                We create exceptional digital experiences through strategic design,
+                thoughtful development, and data-driven insights.
+              </motion.p>
+
+              {/* Email Form */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="max-w-md"
+              >
+                <AnimatePresence mode="wait">
+                  {!subscribed ? (
+                    <motion.form
+                      key="form"
+                      exit={{ opacity: 0, y: -10 }}
+                      onSubmit={handleSubscribe}
+                      className="flex gap-2"
+                    >
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email"
+                        className="flex-1 px-4 py-3 text-sm border border-black/20 rounded-lg text-black placeholder-black/40 focus:outline-none focus:border-black transition-all duration-300"
+                        required
+                      />
+                      <motion.button
+                        type="submit"
+                        className="px-5 py-3 text-sm bg-black text-white font-semibold rounded-lg hover:bg-black/80 transition-all duration-300 flex items-center gap-2 whitespace-nowrap"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        Join Waitlist
+                        <ArrowRight className="w-4 h-4" />
+                      </motion.button>
+                    </motion.form>
+                  ) : (
+                    <motion.div
+                      key="success"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      className="py-3 px-4 rounded-lg border border-black/20 bg-black/5"
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className="w-7 h-7 rounded-full bg-black flex items-center justify-center flex-shrink-0">
+                          <Check className="w-4 h-4 text-white" strokeWidth={2.5} />
+                        </div>
+                        <div>
+                          <p className="font-semibold text-sm">You&apos;re on the list!</p>
+                          <p className="text-xs text-black/60">We&apos;ll be in touch soon.</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            </div>
+
+            {/* Right Column - Services & Stats */}
+            <div className="space-y-8">
+              {/* Services */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.7 }}
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-black/40 mb-4">
+                  Our Expertise
+                </p>
+                <div className="grid grid-cols-2 gap-3">
+                  {services.map((service, index) => (
+                    <motion.div
+                      key={service}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
+                      className="group relative"
+                    >
+                      <span className="text-sm md:text-base font-medium text-black/70 group-hover:text-black transition-colors cursor-default">
+                        {service}
+                      </span>
+                      <motion.div
+                        className="absolute -bottom-0.5 left-0 h-px bg-black"
+                        initial={{ width: 0 }}
+                        whileHover={{ width: "100%" }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
+                className="grid grid-cols-3 gap-6 pt-6 border-t border-black/10"
+              >
+                {[
+                  { value: "50+", label: "Projects" },
+                  { value: "98%", label: "Satisfaction" },
+                  { value: "15+", label: "Clients" }
+                ].map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4, delay: 1 + index * 0.1 }}
+                  >
+                    <div className="text-2xl md:text-3xl font-bold mb-1 tracking-tight font-space-grotesk">
+                      {stat.value}
+                    </div>
+                    <div className="text-xs text-black/50 uppercase tracking-[0.15em] font-medium">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </div>
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+
+      {/* Footer */}
+      <motion.footer
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
+        className="p-4 md:p-6 lg:p-8 flex-shrink-0 relative z-10"
+      >
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-black/40">
+          <div>© 2025 Cortex Creative. All rights reserved.</div>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-black transition-colors">Privacy</a>
+            <a href="#" className="hover:text-black transition-colors">Terms</a>
+            <a href="mailto:hello@cortexcreative.ca" className="hover:text-black transition-colors">Contact</a>
+          </div>
+        </div>
+      </motion.footer>
     </div>
   );
 }
