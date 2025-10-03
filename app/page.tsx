@@ -1,27 +1,10 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Check } from "lucide-react";
-import { useState } from "react";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
 export default function ComingSoon() {
-  const [email, setEmail] = useState("");
-  const [subscribed, setSubscribed] = useState(false);
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (email && emailRegex.test(email)) {
-      // TODO: Send email to backend/newsletter service
-      setSubscribed(true);
-      setEmail("");
-      setTimeout(() => setSubscribed(false), 5000);
-    }
-  };
-
   const services = [
     "Web & Mobile Design",
     "Product Development",
@@ -252,59 +235,21 @@ export default function ComingSoon() {
                 thoughtful development, and data-driven insights.
               </motion.p>
 
-              {/* Email Form */}
+              {/* CTA Button */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="max-w-md"
               >
-                <AnimatePresence mode="wait">
-                  {!subscribed ? (
-                    <motion.form
-                      key="form"
-                      exit={{ opacity: 0, y: -10 }}
-                      onSubmit={handleSubscribe}
-                      className="flex gap-2"
-                    >
-                      <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        placeholder="Enter your email"
-                        className="flex-1 px-4 py-3 text-sm border border-black/20 rounded-lg text-black placeholder-black/40 focus:outline-none focus:border-black transition-all duration-300"
-                        required
-                      />
-                      <motion.button
-                        type="submit"
-                        className="px-5 py-3 text-sm bg-black text-white font-semibold rounded-lg hover:bg-black/80 transition-all duration-300 flex items-center gap-2 whitespace-nowrap"
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        Join Waitlist
-                        <ArrowRight className="w-4 h-4" />
-                      </motion.button>
-                    </motion.form>
-                  ) : (
-                    <motion.div
-                      key="success"
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.95 }}
-                      className="py-3 px-4 rounded-lg border border-black/20 bg-black/5"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="w-7 h-7 rounded-full bg-black flex items-center justify-center flex-shrink-0">
-                          <Check className="w-4 h-4 text-white" strokeWidth={2.5} />
-                        </div>
-                        <div>
-                          <p className="font-semibold text-sm">You&apos;re on the list!</p>
-                          <p className="text-xs text-black/60">We&apos;ll be in touch soon.</p>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                <motion.a
+                  href="mailto:hello@cortexcreative.ca"
+                  className="inline-flex items-center gap-2 px-6 py-3 text-sm bg-black text-white font-semibold rounded-lg hover:bg-black/80 transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Get in Touch
+                  <ArrowRight className="w-4 h-4" />
+                </motion.a>
               </motion.div>
             </div>
 
