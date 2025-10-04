@@ -77,7 +77,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID;
+  const gaId = 'G-WXM24B3DX4';
 
   const jsonLd = {
     "@context": "https://schema.org",
